@@ -8,7 +8,8 @@ const initialState = {
   // foco é usar o número sem deixar os outros atrapalharem
   number: 0,
 };
-//O objetivo da função reducer é pegar o estado atual e para cada ação evoluir o estado alterando algum atributo
+//O objetivo da função reducer é pegar o estado atual e para cada
+//ação evoluir o estado alterando algum atributo
 function reducer(state, action) {
   switch (action.type) {
     case 'number_add2':
