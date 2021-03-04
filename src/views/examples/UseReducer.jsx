@@ -1,33 +1,7 @@
 import React, { useReducer } from 'react';
 import PageTitle from '../../components/layout/PageTitle';
-
-const initialState = {
-  cart: [],
-  products: [],
-  user: null,
-  // foco é usar o número sem deixar os outros atrapalharem
-  number: 0,
-};
-//O objetivo da função reducer é pegar o estado atual e para cada
-//ação evoluir o estado alterando algum atributo
-function reducer(state, action) {
-  switch (action.type) {
-    case 'number_add2':
-      return { ...state, number: state.number + 2 };
-    case 'numberMulti7':
-      return { ...state, number: state.number * 7 };
-    case 'numberDiv25':
-      return { ...state, number: state.number / 25 };
-    case 'numberInt':
-      return { ...state, number: Math.ceil(state.number) };
-    case 'numberAddN':
-      return { ...state, number: state.number + action.payload };
-    case 'login':
-      return { ...state, user: { name: action.payload } };
-    default:
-      return state;
-  }
-}
+import { initialState, reducer } from '../../store';
+import { numberAdd2, login } from '../../store/actions';
 
 const UseReducer = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -46,16 +20,10 @@ const UseReducer = (props) => {
 
         <span className="text">{state.number}</span>
         <div>
-          <button
-            className="btn"
-            onClick={() => dispatch({ type: 'login', payload: 'Maria' })}
-          >
+          <button className="btn" onClick={() => login(dispatch, 'Zini')}>
             Login
           </button>
-          <button
-            className="btn"
-            onClick={() => dispatch({ type: 'number_add2' })}
-          >
+          <button className="btn" onClick={() => numberAdd2(dispatch)}>
             +2
           </button>
           <button
